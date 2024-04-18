@@ -10,3 +10,4 @@ services:
       NODE_ENV: production
     volumes:
       - .:/usr/src/app 
+    restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
