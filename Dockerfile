@@ -7,8 +7,11 @@ WORKDIR /usr/src/app
 # Copia el archivo package.json y package-lock.json al directorio de trabajo
 COPY package*.json ./
 
-# Instala las dependencias
-RUN npm install
+# Instala las dependencias como usuario "node"
+RUN chown -R node:node /usr/src/app && npm install --quiet
+
+# Cambia al usuario "node" para evitar problemas de permisos
+USER node
 
 # Copia el código fuente de tu aplicación al contenedor
 COPY . .
