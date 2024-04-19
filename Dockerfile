@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # Copia el archivo package.json y package-lock.json al directorio de trabajo
 COPY package*.json ./
 
+# Elimina la carpeta node_modules si existe
+RUN rm -rf node_modules
+
 # Instala las dependencias como usuario "node"
 RUN chown -R node:node /usr/src/app && npm install --quiet
 
